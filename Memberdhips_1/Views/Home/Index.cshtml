@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Memberdhips_1.Models.ThumbnailAreaModel>
+@using Memberdhips_1.Models
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+
+<div class="row">
+    @if (User.Identity.IsAuthenticated)
+    {
+        foreach (var area in Model)
+        {
+    @Html.Partial("_ThumbnailAreaPartial",area)
+                }
+            }
+            else
+            {
+        //Left Column
+        <div class="col-lg-9 col-md-8 col-sm-7 ">
+            <h2>I am not logged in</h2>
+        </div>
+        //Right Column
+        <div class="col-lg-3 col-md-4 col-sm-5 ">
+            @Html.Partial("_RegisterUserPartial", new RegisterUserModel {Email="", Name="", Password="" })
+        </div>
+    }
+
+</div>
+
+<div class="row">
+    <div class="col-sm-3 register-code-area">
+        @Html.Partial("_RegisterCodePartial")
+    </div>
+    <div class="col-sm-9">
+
+    </div>
+</div>
